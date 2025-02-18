@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({});
-const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleUserInput = (e) => {
     const { name, value } = e.target;
@@ -13,38 +13,36 @@ const [errors, setErrors] = useState({});
     // console.log(registerData,"data")
   };
 
-  const isValid = (value)=>{
+  const isValid = (value) => {
     const handleError = {};
-
-    if (!value.name.trim()) handleError.name = "Please Enter Name";
-    if (!value.email.trim()) handleError.email = "Please Enter Email";
-    if (!value.password.trim()) handleError.password = "Please Enter Password";
-    if (!value.address.trim()) handleError.address = "Please Enter Address";
-    if (!value.contactno.trim()) handleError.contactno = "Please Enter Contact Number";
-    if (!value.age.trim()) handleError.age = "Please Enter Age";
-    if (!value.city.trim()) handleError.city = "Please Enter City";
-    if (!value.pincode.trim()) handleError.pincode = "Please Enter Pincode";
-
+    if (!value.name) handleError.name = "Please Enter Name";
+    if (!value.email) handleError.email = "Please Enter Email";
+    if (!value.password) handleError.password = "Please Enter Password";
+    if (!value.address) handleError.address = "Please Enter Address";
+    if (!value.contactno) handleError.contactno = "Please Enter Contact Number";
+    if (!value.age) handleError.age = "Please Enter Age";
+    if (!value.city) handleError.city = "Please Enter City";
+    if (!value.pincode) handleError.pincode = "Please Enter Pincode";
     setErrors(handleError);
-
     return Object.keys(handleError).length === 0; // Returns `true` if no errors
-
-
-  }
-  const handleRegister = (e)=>{
+  };
+  const handleRegister = (e) => {
     e.preventDefault();
     if (isValid(registerData)) {
       console.log("Registration Successful", registerData);
     } else {
       console.log("Validation Failed");
     }
-  }
+  };
   return (
     <>
       <h1 className="bg-blue-700 text-white p-4">Register User</h1>
 
       <div className="container:full px-5 flex flex-col items-center">
-        <form className="grid grid-cols-2 gap-14 mt-5" onSubmit={handleRegister}>
+        <form
+          className="grid grid-cols-2 gap-14 mt-5"
+          onSubmit={handleRegister}
+        >
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
               {" "}
@@ -55,10 +53,16 @@ const [errors, setErrors] = useState({});
               placeholder="Enter a name"
               name="name"
               value={registerData?.name}
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.name
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
-            {!errors?.name && <span className="text-red-700">{errors?.name}</span>}
+            {errors?.name && (
+              <span className="text-red-700">{errors?.name}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -70,9 +74,16 @@ const [errors, setErrors] = useState({});
               placeholder="Enter Email"
               name="email"
               value={registerData?.email}
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.email
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.email && (
+              <span className="text-red-700">{errors?.email}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -84,9 +95,16 @@ const [errors, setErrors] = useState({});
               name="password"
               value={registerData?.password}
               placeholder="Enter Password"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.password
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.password && (
+              <span className="text-red-700">{errors?.password}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -94,7 +112,7 @@ const [errors, setErrors] = useState({});
               Gender
             </label>
             <select
-              name="gender" 
+              name="gender"
               value={registerData?.gender}
               id="gender"
               className="border-2 p-3 w-96 rounded-md"
@@ -114,9 +132,16 @@ const [errors, setErrors] = useState({});
               name="contactno"
               value={registerData?.contactno}
               placeholder="Contact number"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.contactno
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.contactno && (
+              <span className="text-red-700">{errors?.contactno}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -128,9 +153,14 @@ const [errors, setErrors] = useState({});
               name="age"
               value={registerData?.age}
               placeholder="Age"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.age
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.age && <span className="text-red-700">{errors?.age}</span>}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -141,9 +171,16 @@ const [errors, setErrors] = useState({});
               id="address"
               value={registerData?.address}
               placeholder="Address"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.address
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.address && (
+              <span className="text-red-700">{errors?.address}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -155,9 +192,16 @@ const [errors, setErrors] = useState({});
               name="city"
               value={registerData?.city}
               placeholder="City"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.city
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.city && (
+              <span className="text-red-700">{errors?.city}</span>
+            )}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -169,13 +213,23 @@ const [errors, setErrors] = useState({});
               name="pincode"
               value={registerData?.pincode}
               placeholder="Pincode"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors.pincode
+                  ? "border-2 p-3 w-96 rounded-md border-red-700"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               onChange={handleUserInput}
             />
+            {errors?.pincode && (
+              <span className="text-red-700">{errors?.pincode}</span>
+            )}
           </div>
-        <button type="submit" className="bg-blue-700 text-white mt-10 w-52 p-4">
-          Register User
-        </button>
+          <button
+            type="submit"
+            className="bg-blue-700 text-white mt-10 w-52 p-4"
+          >
+            Register User
+          </button>
         </form>
       </div>
     </>
