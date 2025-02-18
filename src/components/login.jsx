@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { validateFields } from "../utils/common";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({
     email: "",
@@ -27,16 +29,20 @@ const Login = () => {
       handleError.password = "Please Enter password";
     }
     setErrors(handleError);
+
+    // Return false if there are errors, otherwise return true
+    return Object.keys(handleError).length === 0;
   };
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Click");
-
-    const validation = isValid(state);
-    if(validation){
-      console.log("Login Successful")
+    if (isValid(state)) {
+      console.log("Login Successful");
+      alert("Login Successful");
+      navigate("/");
+    } else {
+      console.log("Validation Failed");
     }
-   
   };
   return (
     <>
@@ -72,12 +78,16 @@ const Login = () => {
               type="email"
               placeholder="Enter Email"
               name="email"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors?.email
+                  ? "border-2 border-red-700 p-3 w-96 rounded-md"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               value={state.email}
               onChange={handleOnChange}
             />
             {errors?.email && (
-              <p className="text-red-500 font-semibold">{errors?.email}</p>
+              <p className="text-red-700 font-semibold">{errors?.email}</p>
             )}
           </div>
 
@@ -89,12 +99,16 @@ const Login = () => {
               type="password"
               name="password"
               placeholder="Enter Password"
-              className="border-2 p-3 w-96 rounded-md"
+              className={
+                errors?.password
+                  ? "border-2 border-red-700 p-3 w-96 rounded-md"
+                  : "border-2 p-3 w-96 rounded-md"
+              }
               value={state.password}
               onChange={handleOnChange}
             />
             {errors?.password && (
-              <p className="text-red-500 font-semibold">{errors?.password}</p>
+              <p className="text-red-700 font-semibold">{errors?.password}</p>
             )}
           </div>
 
