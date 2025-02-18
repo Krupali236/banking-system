@@ -58,6 +58,7 @@ const [errors, setErrors] = useState({});
               className="border-2 p-3 w-96 rounded-md"
               onChange={handleUserInput}
             />
+            {!errors?.name && <span className="text-red-700">{errors?.name}</span>}
           </div>
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
