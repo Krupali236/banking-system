@@ -3,7 +3,7 @@ const Register = () => {
     <>
       <h1 className="bg-blue-700 text-white p-4">Register User</h1>
 
-      <div className="container:full px-5">
+      <div className="container:full px-5 flex flex-col items-center">
         <form className="grid grid-cols-2 gap-14 mt-5">
           <div className="columns-1 flex flex-col text-start">
             <label className="font-semibold text-blue-700 my-1 text-lg">
@@ -111,7 +111,7 @@ const Register = () => {
             />
           </div>
         </form>
-        <button type="submit" className="bg-blue-700 text-white mt-5 w-52 p-4">
+        <button type="submit" className="bg-blue-700 text-white mt-10 w-52 p-4">
           Register User
         </button>
       </div>

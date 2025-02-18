@@ -1,5 +1,5 @@
 import "./App.css";
-import Login from "./components/user/login";
+import Login from "./components/login";
 import Register from "./components/user/register";
 import AdminLogin from "./components/user/admin-register";
 import Managers from "./components/admin/managers";
@@ -48,3 +48,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
