@@ -224,9 +224,11 @@ const Register = () => {
               <span className="text-red-700">{errors?.pincode}</span>
             )}
           </div>
+          <div className="w-full"></div>
+
           <button
             type="submit"
-            className="bg-blue-700 text-white mt-10 w-52 p-4"
+            className="bg-blue-700 text-white mt-5 w-52 p-4"
           >
             Register User
           </button>
